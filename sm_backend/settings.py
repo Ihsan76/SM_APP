@@ -22,6 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 import os 
 
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split() or ["127.0.0.1", "localhost"]
+
 DEFAULT_SECRET_KEY = 'django-insecure-l$tziva-8_xu9^j$^1q13=#sbkqsyp4xrva+lpmm-k4%&sxvmx'
 SECRET_KEY = os.environ.get("SECRET_KEY", DEFAULT_SECRET_KEY)
 
