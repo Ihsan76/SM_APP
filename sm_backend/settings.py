@@ -24,6 +24,11 @@ import os
 
 ALLOWED_HOSTS = ["sm-app.up.railway.app", "127.0.0.1", "localhost"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://sm-app.up.railway.app",
+]
+
+
 DEFAULT_SECRET_KEY = 'django-insecure-l$tziva-8_xu9^j$^1q13=#sbkqsyp4xrva+lpmm-k4%&sxvmx'
 SECRET_KEY = os.environ.get("SECRET_KEY", DEFAULT_SECRET_KEY)
 
