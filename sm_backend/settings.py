@@ -56,8 +56,18 @@ else:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
+# نفس REST_FRAMEWORK اللي عندك + هذا:
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        # لو أردت JWT أضف سطره هنا لاحقاً
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
 
 # Application definition
 
@@ -70,6 +80,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'accounts',
+    'mahwar_social.apps.MahwarSocialConfig',
 ]
 
 MIDDLEWARE = [
