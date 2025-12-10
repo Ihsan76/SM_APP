@@ -45,13 +45,19 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 # SocialAccount ViewSet ✅ مع queryset
-class SocialAccountViewSet(viewsets.ReadOnlyModelViewSet):
+
+class SocialAccountViewSet(viewsets.ModelViewSet):
+    queryset = SocialAccount.objects.all()
     serializer_class = SocialAccountSerializer
     permission_classes = [IsAuthenticated]
-    queryset = SocialAccount.objects.all()  # ← أضف هذا السطر
-    
+
     def get_queryset(self):
+        # حتى يرى المستخدم حساباته فقط
         return SocialAccount.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        
 
 class DashboardView(APIView):
     permission_classes = [IsAuthenticated]
