@@ -22,6 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 import os 
 
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),   # صلاحية توكن الدخول: 60 دقيقة
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),      # صلاحية التوكن المخصّص للتجديد: 7 أيام
+    # يمكن ترك باقي الإعدادات على القيم الافتراضية
+}
+
+
 ALLOWED_HOSTS = ["sm-app.up.railway.app", "127.0.0.1", "localhost"]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -60,14 +69,16 @@ else:
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        # لو أردت JWT أضف سطره هنا لاحقاً
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+
 
 # Application definition
 
@@ -78,12 +89,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt',
     'accounts',
     'mahwar_social.apps.MahwarSocialConfig',
 ]
 
+
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -162,3 +178,9 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
