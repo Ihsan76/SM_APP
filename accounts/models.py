@@ -1,3 +1,4 @@
+# accounts/models.py
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -31,6 +32,12 @@ class SocialAccount(models.Model):
         blank=True,
         null=True,
         help_text="المعرّف الداخلي للحساب في منصة السوشيال ميديا (إن وُجد).",
+    )
+    account_url = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="رابط صفحة الحساب في منصة السوشيال ميديا (اختياري).",
     )
     is_active = models.BooleanField(
         default=True,

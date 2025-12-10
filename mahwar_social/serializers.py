@@ -1,3 +1,4 @@
+# mahwar_social/serializers.py
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from accounts.models import SocialAccount
@@ -15,8 +16,15 @@ class SocialAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SocialAccount
-        fields = ['id', 'user', 'platform', 'account_name', 'account_id', 'is_active']
-
+        fields = [
+            'id',
+            'user',
+            'platform',
+            'account_name',
+            'account_id',
+            'account_url',   # جديد
+            'is_active',
+        ]
 
 class AlbumSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
