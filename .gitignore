@@ -1,0 +1,68 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# Python bytecode
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Build / distribution
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter
+.ipynb_checkpoints
+
+# mypy
+.mypy_cache/
+
+# IDEs / editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
